@@ -1,0 +1,1246 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\begin_preamble
+%Farben fuer Programmlisting
+\usepackage{listings,xcolor}
+\definecolor{pl_background}{rgb}{0.95,0.95,0.95}
+\definecolor{pl_comment}{rgb}{0.12, 0.38, 0.18 }
+\definecolor{pl_ifelse}{rgb}{0.74,0.74,.29}
+\definecolor{pl_keyword}{rgb}{0.37, 0.08, 0.25}
+\definecolor{pl_string}{rgb}{0.06, 0.10, 0.98}
+% Vordefiniertes Programmlisting
+\lstset{
+language = java,
+basicstyle = \small\sffamily,
+backgroundcolor = \color{pl_background},
+stringstyle = \color{pl_string},
+keywordstyle = \color{pl_keyword}\bfseries,
+commentstyle = \color{pl_comment}\itshape,
+frame = lrbt,
+numbers = left,
+showstringspaces = false,
+breaklines = true,
+xleftmargin = 15pt,
+emph = [1]{php},
+emphstyle = [1]\color{black},
+emph = [2]{if,and,or,else},
+emphstyle = [2]\color{pl_ifelse}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 4cm
+\rightmargin 2.6cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\lang ngerman
+Computergrafik
+\lang english
+ 
+\lang ngerman
+und
+\lang english
+ Visualisierung II Belegaufgabe
+\end_layout
+
+\begin_layout Author
+Huy Tao (41652), Sven Pieper (41887)
+\end_layout
+
+\begin_layout Date
+07.05.2018
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Einführung
+\end_layout
+
+\begin_layout Standard
+Aufgabe unserer Belegarbeit war die Erstellung verschiedener Klassen: Vektor2D,
+ Vektor3D und LineareAlgebra.
+ Weiterhin sollten sinnvolle Hilfsmethoden angeboten werden.
+ Folgende Funktionen sollten für Vektor2D sowie Vektor3D implementiert werden:
+ setPosition, isNullVector, add, sub, mult, div, isEqual, isNotEqual, length
+ und normalize.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Für die Klasse LineareAlgebra waren folgende Funktionen gefordert: add,
+ sub, mult, div, isEqual, isNotEqual, length, normalize, euklDistance, manhattan
+Distance, crossProduct, dotProduct, cosEquation, sinEquation, angleRad,
+ angleDegree, radToDegree, degreeToRad, determinante, abs und show.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+All diese Funktionen sollten testgetrieben entwickelt werden.
+ Hierfür wurde Test Driven Development benutzt, welches im Folgenden erläutert
+ wird.
+\end_layout
+
+\begin_layout Section
+Test Driven Development (TDD)
+\end_layout
+
+\begin_layout Standard
+Beim Test Driven Development handelt es sich um eine Methode der Softwareentwick
+lung, die den Test von Anfang an miteinbezieht.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Die gewöhnliche Softwareentwicklung schlägt vor, dass man zuerst phasenweise
+ die Kundenanforderungen umsetzt und dann am Ende den Code unabhängig testet.
+ Hier werden die Tests hauptsächlich am Ende der Entwicklung erstellt und
+ ausgeführt.
+ Test Driven Development zeichnet sich damit aus, diese Herangehensweise
+ umzudrehen.
+ Der Entwickler überlegt sich bereits vor der eigentlichen Programmierung
+ der Funktionen, welche Anforderungen die Software erfüllen muss und welche
+ Tests sinnvoll sind.
+ Anhand der Testergebnissen, erfolgt die schrittweise Programmierung in
+ kurzen Abschnitten.
+ Jeder Zyklus erweitert das Programm um weitere Eigenschaften oder Funktionen.
+ Dabei wird wie folgt vorgegangen:
+\end_layout
+
+\begin_layout Enumerate
+Test erstellen
+\begin_inset Newline newline
+\end_inset
+
+Für jede neue Softwareanforderung wird ein neuer Test generiert.
+\end_layout
+
+\begin_layout Enumerate
+Test durchführen
+\begin_inset Newline newline
+\end_inset
+
+Es ist noch kein Programmcode geschrieben worden, somit wird dieser Test
+ fehlschlagen.
+ Dieser Test dient lediglich zur Überprüfung der Testumgebung.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Code schreiben und anpassen
+\begin_inset Newline newline
+\end_inset
+
+Als nächstes wird ein möglichst simpler und minimalistischer Code geschrieben,
+ der den Test bestehen muss.
+ Funktionen weiterer Phasen sollen nicht vorweg genommen werden.
+\end_layout
+
+\begin_layout Enumerate
+Neuen Test durchführen
+\begin_inset Newline newline
+\end_inset
+
+Ein weiterer Test wird geschrieben, dieser beinhaltet erweiterte Anforderungen
+ an den Code.
+ Nun werden die Schritte 2 bis 4 so oft wiederholt bis alle Anforderungen
+ erfüllt sind.
+\end_layout
+
+\begin_layout Enumerate
+Refaktorsierung
+\begin_inset Newline newline
+\end_inset
+
+Im letzten Schritt wird der Code durch Refaktorisierung vereinfacht und
+ verständlich gemacht.
+ Hier empfiehlt es sich erneut den Test durchzuführen, um sicherzustellen
+ dass durch die Refaktorisierung keine Funktionalitäten beschädigt wurden.
+\end_layout
+
+\begin_layout Standard
+Die Tests sorgen für einen Fokus auf die Ziele der Software und deren Funktional
+ität.
+ Zudem ist es leichter, weitere Funktionen hinzuzufügen und die Software
+ zu erweitern – selbst für Entwickler, die nicht am Projekt beteiligt waren.
+ Weiterhin wird Redundanz effektiv vermieden.
+\end_layout
+
+\begin_layout Section
+Beispiele zu TDD
+\end_layout
+
+\begin_layout Standard
+Folgend soll das Prinzip von Test Driven Development anhand einiger Funktionen
+ aus den Klassen Vektor2D/3D und LineareAlgebra verdeutlicht werden.
+\end_layout
+
+\begin_layout Subsection
+Add-Funktion Vektor2D
+\end_layout
+
+\begin_layout Standard
+Diese Funktion soll einen Vektor auf einen gegebenen Vektor addieren.
+ Die X-und Y-Werte sollen paarweise behandelt werden.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Test 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 	
+\end_layout
+
+\begin_layout Plain Layout
+
+void testAdd() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D a = new Vektor2D(3.0, 4.0); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D b = new Vektor2D(1.0, 1.0); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D erg = new Vektor2D(4.0, 5.0); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	a.add(b); 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.x, erg.x, 0.000000001); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.y, erg.y, 0.000000001); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Code 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void add() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der Test schlägt fehl.
+ Dies ist auch nicht verwunderlich, da der Code noch keinerlei Funktionalität
+ beinhaltet.
+ Im weiteren wurde der Code mit den minimalsten Funktionen bestückt, dass
+ der Test glückt.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void add(Vektor2D summand) {	
+\end_layout
+
+\begin_layout Plain Layout
+
+	this.x += summand.x; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	this.y += summand.y; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Nun ist der Test erfolgreich, alle geforderten Funktionen werden dem Test
+ gerecht.
+ Folgend müssen sich weitere Funktionen für den Code überlegt und etwaige
+ Probleme bedacht werden.
+ Speziell für die Add-Funktion ist zu nennen, dass ein Überlauf des Speichers
+ auftreten kann und somit falsche Ergebnisse hervorkommen können.
+ Ein neuer Test muss geschrieben werden.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Test 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 
+\end_layout
+
+\begin_layout Plain Layout
+
+void testAdd() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D a = new Vektor2D(Double.MAX_VALUE, Double.MAX_VALUE); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D b = new Vektor2D(2, 2); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D erg = new Vektor2D(Double.MAX_VALUE+2, Double.MAX_VALUE+2); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	a.add(b); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.x, erg.x, 0.000000001); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.y, erg.y, 0.000000001); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der neue Test schlägt fehl, da der Code noch nicht auf die Problematik des
+ Überlaufs angepasst wurde.
+ Der Code wird nun stückweise angepasst.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void add(Vektor2D summand) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	if ((Double.MAX_VALUE - this.x) < summand.x || (Double.MAX_VALUE - this.y) <
+ summand.y ) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("Addition Overflow"); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	else { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.x += summand.x; 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.y += summand.y; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("Addiction Accepted"); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der angepasste Code beseitigt die Problematik des Überlaufs und besteht
+ den Test.
+ Somit sind alle Anforderungen implementiert und der Code ist fertig.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Normalize-Funktion Vektor3D
+\end_layout
+
+\begin_layout Standard
+Ein ausgewählter Vektor soll zu einem Einheitsvektor umgewandelt werden.
+ Hierzu werden die Werte des Vektors durch die Länge des Vektors geteilt.
+\end_layout
+
+\begin_layout Subsubsection*
+Test 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 	 	
+\end_layout
+
+\begin_layout Plain Layout
+
+void testNormalize() { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor3D a = new Vektor3D(4, 3, 3); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor3D a_norm = new Vektor3D(0.6859943405700353, 0.5144957554275265, 0.514495755
+4275265); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	a.normalize(); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.x, a_norm.x); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.y, a_norm.y); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(a.z, a_norm.z); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Code 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void normalize() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der Test schlägt fehl.
+ Dies ist auch nicht verwunderlich, da der Code noch keinerlei Funktionalität
+ beinhaltet.
+ Im weiteren wurde der Code mit den minimalsten Funktionen bestückt, dass
+ der Test glückt.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void normalize() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	double length = this.length(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	this.x = this.x / length; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	this.y = this.y / length; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	this.z = this.z / length; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Nun ist der Test erfolgreich, alle geforderten Funktionen werden dem Test
+ gerecht.
+ Folgend müssen sich weitere Funktionen für den Code überlegt und etwaige
+ Probleme bedacht werden.
+ Speziell für die Normalize-Funktion ist zu nennen, dass das teilen durch
+ Null nicht erlaubt ist.
+ Somit darf der Vektor nicht die Länge Null besitzen.
+\end_layout
+
+\begin_layout Subsubsection*
+Test 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 	 
+\end_layout
+
+\begin_layout Plain Layout
+
+void testNormalize() { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D a = new Vektor2D(); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	a.normalize(); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(a.x != a.x) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		assertTrue(true); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	else if(a.x != 0 || a.y != 0) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		assertTrue(false); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der neue Test schlägt fehl, da der Code noch nicht auf die Problematik der
+ Division durch Null angepasst wurde.
+ Der Code wird nun stückweise angepasst.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public void normalize() { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	double length = this.length(); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(length == 0) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("Normalisierung nicht mögich da Vektor länge Null");
+ 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	else { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.x = this.x / length; 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.y = this.y / length;
+\end_layout
+
+\begin_layout Plain Layout
+
+		this.z = this.z / length; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("Vektor wurde normalisiert"); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der angepasste Code beseitigt die Problematik und besteht den Test.
+ Somit sind alle Anforderungen implementiert und der Code ist fertig.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Mult2D-Funktion LineareAlgebra
+\end_layout
+
+\begin_layout Standard
+Die Werte des vorgebenen Vektors sollen paarweise mit einem double-Wert
+ multipliziert werden.
+ Die erzeugten Werte werden in einen neuen Vektor geschrieben.
+\end_layout
+
+\begin_layout Subsubsection*
+Test 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 	
+\end_layout
+
+\begin_layout Plain Layout
+
+void testMult2D() { 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D a = new Vektor2D(2,2); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	double b = 2; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D erg = LineareAlgebra.mult(a, b); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(4, erg.x, 0.0000001); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(4, erg.y, 0.0000001); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Code 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static Vektor2D mult() {	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der Test schlägt fehl.
+ Dies ist auch nicht verwunderlich, da der Code noch keinerlei Funktionalität
+ beinhaltet.
+ Im weiteren wurde der Code mit den minimalsten Funktionen bestückt, dass
+ der Test glückt.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static Vektor2D mult(Vektor2D a, double b) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	return new Vektor2D(a.x * b, a.y * b); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Nun ist der Test erfolgreich, alle geforderten Funktionen werden dem Test
+ gerecht.
+ Folgend müssen sich weitere Funktionen für den Code überlegt und etwaige
+ Probleme bedacht werden.
+ Auch hier ist zu sagen, dass die Problematik des Überlaufs besteht.
+ Dies muss abgefangen werden, hierzu wird ein neuer Test geschrieben.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Test 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+@Test 	
+\end_layout
+
+\begin_layout Plain Layout
+
+void testMult2D() { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D a = new Vektor2D(Double.MAX_VALUE, Double.MAX_VALUE); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	double b = 2; 	
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	Vektor2D erg = LineareAlgebra.mult(a, b); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(0, erg.x, 0.0000001); 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	assertEquals(0, erg.y, 0.0000001); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der neue Test schlägt fehl, da der Code noch nicht auf die Problematik des
+ Überlaufs angepasst wurde.
+ Der Code wird nun stückweise geändert.
+\end_layout
+
+\begin_layout Subsubsection*
+Code 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public static Vektor2D mult(Vektor2D a, double b) { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+	if(a.x != 0 && ((a.x*b) / a.x) != b || a.y != 0 && ((a.y*b) / a.y) != b) { 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("2D Mult Overflow, created Nullvektor"); 			
+\end_layout
+
+\begin_layout Plain Layout
+
+		return new Vektor2D(); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	else { 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		System.out.println("2D Mult Accepted"); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		return new Vektor2D(a.x * b, a.y * b); 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	} 	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskussion
+\end_layout
+
+\begin_layout Standard
+Der angepasste Code beseitigt die Problematik und besteht den Test.
+ Somit sind alle Anforderungen implementiert und der Code ist fertig.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fazit und Schlussworte
+\end_layout
+
+\begin_layout Standard
+Die Bewältigung der Belegaufgabe mit Test Driven Development hat uns einen
+ neuen Blick auf die Erstellung von Software gegeben.
+ Die Herangehensweise schafft einen klaren und engen Fokus und mindert somit
+ die Komplexität der Tests sowie der Implementierung und schafft somit eine
+ höhere Qualität.
+ Jedoch kann der Einstieg für Programmieranfänger ungewöhnlich sein, da
+ man sich fragt, wie man etwas testen soll, das noch garnicht vorhanden
+ ist.
+\end_layout
+
+\end_body
+\end_document
